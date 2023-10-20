@@ -1,18 +1,18 @@
 "use client";
 
-import { Product } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "./badge";
 import { ArrowDownIcon } from "lucide-react";
+import { ProductWithTotalPriceInterface } from "@/helpers/computed-total-price";
 
 interface ProductItemProps {
-  product: Product;
+  product: ProductWithTotalPriceInterface;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className="flex w-44 flex-col">
-      <div className="relative flex h-44 w-44 items-center justify-center rounded-lg bg-accent">
+    <div className="flex w-40 flex-col gap-4 ">
+      <div className="relative flex h-40 w-40 items-center justify-center rounded-lg bg-accent">
         {/* IMAGEM */}
         <Image
           src={product.imageUrls[0]}
@@ -31,7 +31,16 @@ const ProductItem = ({ product }: ProductItemProps) => {
           </Badge>
         )}
       </div>
-      <div className="flex flex-col">{/* TEXTOS */}</div>
+      <div className="flex flex-col">
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs">
+          {product.name}
+        </p>
+        {product.discountPercentage > 0 ? (
+          <div>{product.totalPrice}</div>
+        ) : (
+          <p></p>
+        )}
+      </div>
     </div>
   );
 };
