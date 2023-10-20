@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Badge } from "./badge";
 import { ArrowDownIcon } from "lucide-react";
 import { ProductWithTotalPriceInterface } from "@/helpers/computed-total-price";
+import { localeToBrlPrice } from "@/helpers/locale-to-brl-price";
 
 interface ProductItemProps {
   product: ProductWithTotalPriceInterface;
@@ -36,9 +37,18 @@ const ProductItem = ({ product }: ProductItemProps) => {
           {product.name}
         </p>
         {product.discountPercentage > 0 ? (
-          <div>{product.totalPrice}</div>
+          <div className="flex items-center gap-1">
+            <span className="font-bold">
+              {localeToBrlPrice(product.totalPrice)}
+            </span>
+            <span className="overflow-hidden text-ellipsis whitespace-nowrap text-xs line-through opacity-75">
+              {localeToBrlPrice(Number(product.basePrice))}
+            </span>
+          </div>
         ) : (
-          <p></p>
+          <span className="font-bold">
+            {localeToBrlPrice(product.totalPrice)}
+          </span>
         )}
       </div>
     </div>
