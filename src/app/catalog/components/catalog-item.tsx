@@ -8,7 +8,7 @@ interface CatalogItem {
 
 const CatalogItem = ({ category }: CatalogItem) => {
   return (
-    <Link href={`/catalog/${category.slug}`}>
+    <Link href={`/category/${category.slug}`}>
       <div className="flex flex-col overflow-hidden rounded-lg">
         <div className="bg-gradient-category flex h-36 w-full items-center justify-center">
           <Image

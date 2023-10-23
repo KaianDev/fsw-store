@@ -10,7 +10,7 @@ interface CatalogProductProps {
   };
 }
 
-const CatalogProduct = async ({ params }: CatalogProductProps) => {
+const CategoryProductPage = async ({ params }: CatalogProductProps) => {
   const products = await prismaClient.product.findMany({
     where: {
       category: {
@@ -38,4 +38,4 @@ const CatalogProduct = async ({ params }: CatalogProductProps) => {
   );
 };
 
-export default CatalogProduct;
+export default CategoryProductPage;
