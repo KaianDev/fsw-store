@@ -1,11 +1,11 @@
 import { Category } from "@prisma/client";
 import Image from "next/image";
 
-interface CategoryItemProps {
+interface CatalogItem {
   category: Category;
 }
 
-const CategoryItem = ({ category }: CategoryItemProps) => {
+const CatalogItem = ({ category }: CatalogItem) => {
   return (
     <div className="flex flex-col overflow-hidden rounded-lg">
       <div className="bg-gradient-category flex h-36 w-full items-center justify-center">
@@ -25,4 +25,4 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
   );
 };
 
-export default CategoryItem;
+export default CatalogItem;
