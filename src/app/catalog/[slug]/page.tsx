@@ -29,7 +29,7 @@ const CatalogProduct = async ({ params }: CatalogProductProps) => {
         {CATEGORY_ITEM[category?.slug as keyof typeof CATEGORY_ITEM]}
         {category?.name}
       </BadgeTitle>
-      <div className="grid grid-cols-2 justify-items-center gap-x-4 gap-y-8">
+      <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
         {products.map((product) => (
           <ProductItem key={product.id} product={computedTotalPrice(product)} />
         ))}

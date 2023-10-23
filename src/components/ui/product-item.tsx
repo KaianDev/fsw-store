@@ -14,15 +14,15 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link href={`/product/${product.slug}`}>
-      <div className="flex w-full min-w-[10rem] flex-col gap-3 ">
-        <div className="relative flex h-[9.5rem] items-center justify-center rounded-lg bg-accent">
+      <div className="flex flex-col gap-3 ">
+        <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
           {/* IMAGEM */}
           <Image
             src={product.imageUrls[0]}
             width={0}
             height={0}
             sizes="100vw"
-            className="h-auto max-h-[60%] w-auto max-w-[80%]"
+            className="h-auto max-h-[60%] w-auto max-w-[80%] object-contain"
             alt={product.name}
           />
           {product.discountPercentage > 0 && (
