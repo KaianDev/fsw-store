@@ -18,9 +18,6 @@ export default async function Home() {
       category: {
         slug: "keyboards",
       },
-      discountPercentage: {
-        gt: 0,
-      },
     },
   });
 
@@ -28,9 +25,6 @@ export default async function Home() {
     where: {
       category: {
         slug: "mouses",
-      },
-      discountPercentage: {
-        gt: 0,
       },
     },
   });
