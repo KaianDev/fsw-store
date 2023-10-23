@@ -14,7 +14,7 @@ const CatalogProduct = async ({ params }: CatalogProductProps) => {
   const products = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: `${params.slug}`,
+        slug: params.slug,
       },
     },
   });

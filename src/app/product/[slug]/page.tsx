@@ -3,7 +3,7 @@ import ProductImage from "./components/product-image";
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
   const product = await prismaClient.product.findFirst({
-    where: { slug: params.slug.toString() },
+    where: { slug: params.slug },
   });
 
   if (!product) {

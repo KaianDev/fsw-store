@@ -27,6 +27,7 @@ const ProductImage = ({ product }: ProductImageProps) => {
       <div className="-mt-1 flex justify-between rounded-lg bg-background px-5 py-8">
         {product.imageUrls.map((img, key) => (
           <Button
+            key={key}
             variant="outline"
             className="h-auto bg-accent"
             onClick={() => setActive(key)}
@@ -47,5 +48,3 @@ const ProductImage = ({ product }: ProductImageProps) => {
 };
 
 export default ProductImage;
-{
-}
