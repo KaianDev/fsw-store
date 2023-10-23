@@ -19,7 +19,7 @@ interface CategoryItemProps {
 
 const CategoryItem = ({ category }: CategoryItemProps) => {
   return (
-    <Link href={`catalog/${category.slug}`}>
+    <Link href={`category/${category.slug}`}>
       <Badge
         variant="outline"
         className="flex justify-center gap-2 rounded-lg py-3"
