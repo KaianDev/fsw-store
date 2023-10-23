@@ -1,4 +1,6 @@
+import BadgeTitle from "@/components/ui/badge-title";
 import ProductItem from "@/components/ui/product-item";
+import { CATEGORY_ITEM } from "@/constants/categoryIcon";
 import { computedTotalPrice } from "@/helpers/computed-total-price";
 import { prismaClient } from "@/lib/prisma";
 
@@ -17,11 +19,21 @@ const CatalogProduct = async ({ params }: CatalogProductProps) => {
     },
   });
 
+  const category = await prismaClient.category.findFirst({
+    where: { slug: params.slug.toString() },
+  });
+
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-5 py-8 justify-items-center">
-      {products.map((product) => (
-        <ProductItem key={product.id} product={computedTotalPrice(product)} />
-      ))}
+    <div className="flex flex-col gap-8 px-5 py-8">
+      <BadgeTitle>
+        {CATEGORY_ITEM[category?.slug as keyof typeof CATEGORY_ITEM]}
+        {category?.name}
+      </BadgeTitle>
+      <div className="grid grid-cols-2 justify-items-center gap-x-4 gap-y-8">
+        {products.map((product) => (
+          <ProductItem key={product.id} product={computedTotalPrice(product)} />
+        ))}
+      </div>
     </div>
   );
 };
