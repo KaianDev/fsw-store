@@ -24,12 +24,12 @@ const ProductImage = ({ product }: ProductImageProps) => {
           className="h-3/4 w-3/4 object-contain"
         />
       </div>
-      <div className="-mt-1 flex justify-between rounded-lg bg-background px-5 py-8">
+      <div className="-mt-1 flex justify-between gap-4 rounded-lg bg-background px-5 py-8">
         {product.imageUrls.map((img, key) => (
           <Button
             key={key}
             variant="outline"
-            className="h-auto bg-accent"
+            className="h-auto w-full bg-accent"
             onClick={() => setActive(key)}
           >
             <Image
