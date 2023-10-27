@@ -1,11 +1,17 @@
 import { prismaClient } from "@/lib/prisma";
-import ProductImage from "./components/product-image";
 import ProductDetails from "./components/product-details";
 import { computedTotalPrice } from "@/helpers/computed-total-price";
 import SectionTitle from "@/components/ui/section-title";
 import ProductList from "@/components/ui/product-list";
+import ProductImages from "./components/product-image";
 
-const ProductPage = async ({ params }: { params: { slug: string } }) => {
+interface ProductPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+const ProductPage = async ({ params }: ProductPageProps) => {
   const product = await prismaClient.product.findFirst({
     where: {
       slug: params.slug,
@@ -31,7 +37,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="flex flex-col gap-8 pb-8">
-      <ProductImage product={product} />
+      <ProductImages imageUrls={product.imageUrls} name={product.name} />
       <ProductDetails product={computedTotalPrice(product)} />
       <div>
         <SectionTitle>Produtos Recomendados</SectionTitle>

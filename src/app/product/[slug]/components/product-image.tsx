@@ -6,39 +6,42 @@ import Image from "next/image";
 import { useState } from "react";
 
 interface ProductImageProps {
-  product: Product;
+  imageUrls: string[];
+  name: string
 }
 
-const ProductImage = ({ product }: ProductImageProps) => {
+const ProductImages = ({ imageUrls, name }: ProductImageProps) => {
   const [active, setActive] = useState(0);
 
   return (
     <div className="flex flex-col gap-8">
       <div className="flex h-96 items-center justify-center bg-accent">
         <Image
-          src={product.imageUrls[active]}
+          src={imageUrls[active]}
           width={0}
           height={0}
           sizes="100vw"
-          alt={product.name}
+          alt={name}
           className="h-3/4 w-3/4 object-contain"
         />
       </div>
-      <div className="-mt-1 flex justify-between gap-4 rounded-lg bg-background px-5">
-        {product.imageUrls.map((img, key) => (
+      <div className="-mt-1 grid grid-cols-4 gap-4 rounded-lg bg-background px-5">
+        {imageUrls.map((img, key) => (
           <Button
-            key={key}
+            key={img}
             variant="outline"
-            className="h-auto w-full bg-accent"
+            className={`h-24 w-full bg-accent
+              ${imageUrls[active] === img && "border-2 border-primary"}
+            `}
             onClick={() => setActive(key)}
           >
             <Image
               src={img}
-              alt={`img ${key + 1}`}
+              alt={name}
               width={0}
               height={0}
               sizes="100vw"
-              className="h-10 w-10 object-contain"
+              className="h-auto max-h-[70%] w-auto object-contain"
             />
           </Button>
         ))}
@@ -47,4 +50,4 @@ const ProductImage = ({ product }: ProductImageProps) => {
   );
 };
 
-export default ProductImage;
+export default ProductImages;
